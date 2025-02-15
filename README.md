@@ -1,2 +1,2 @@
 # Mini-Project-group-8
-title- Smart Vitality Ttacker with AI
+title- Smart Vitality Tracker with AI
