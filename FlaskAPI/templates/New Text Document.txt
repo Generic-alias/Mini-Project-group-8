@@ -1,9 +1,0 @@
-<!DOCTYPE html>
-<html>
-<title>
-FlaskAPI
-</title>
-<body>
-Hello, World
-</body>
-</html>
