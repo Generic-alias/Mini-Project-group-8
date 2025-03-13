@@ -236,6 +236,16 @@
     </rect>
    </property>
   </widget>
+  <widget class="QTextEdit" name="textEdit_9">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>120</y>
+     <width>221</width>
+     <height>141</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>
@@ -252,22 +262,6 @@
     <hint type="destinationlabel">
      <x>170</x>
      <y>150</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>708</x>
-     <y>562</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>362</x>
-     <y>430</y>
     </hint>
    </hints>
   </connection>
@@ -380,6 +374,38 @@
     <hint type="destinationlabel">
      <x>167</x>
      <y>82</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit_9</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>747</x>
+     <y>560</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>740</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>719</x>
+     <y>563</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>532</x>
+     <y>567</y>
     </hint>
    </hints>
   </connection>
