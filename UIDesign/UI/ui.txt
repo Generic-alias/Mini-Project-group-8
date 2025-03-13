@@ -1,0 +1,20 @@
+        self.textEdit.textChanged.connect(self.save_text)
+        self.textEdit_2.textChanged.connect(self.save_text)
+        self.textEdit_3.textChanged.connect(self.save_text)
+        self.textEdit_4.textChanged.connect(self.save_text)
+        self.textEdit_5.textChanged.connect(self.save_text)
+        self.textEdit_6.textChanged.connect(self.save_text)
+        self.textEdit_7.textChanged.connect(self.save_text)
+        self.textEdit_8.textChanged.connect(self.save_text)
+def save_text(self):
+        text = self.textEdit.toPlainText()
+        text_2 = self.textEdit_2.toPlainText()
+        text_3 = self.textEdit_3.toPlainText()
+        text_4 = self.textEdit_4.toPlainText()
+        text_5 = self.textEdit_5.toPlainText()
+        text_6 = self.textEdit_6.toPlainText()
+        text_7 = self.textEdit_7.toPlainText()
+        text_8 = self.textEdit_8.toPlainText()
+        text_total = [text_8,'\n', text,'\n', text_2,'\n', text_3,'\n', text_4,'\n', text_5,'\n', text_6,'\n', text_7]
+        with open('E:/College/MiniProject/Mini-Project-group-8/Job/textFile.txt', 'w') as file:
+            file.writelines(text_total)
