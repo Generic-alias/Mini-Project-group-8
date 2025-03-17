@@ -102,8 +102,8 @@ import joblib, pandas
 
 
 def predictor():
-    with open("C:/Users/akash/Documents/GitHub/Mini-Project-group-8/Job/textFile.txt") as file:
-        user_data = file.readlines()
+    with open("E:/College/MiniProject/Mini-Project-group-8/Job/textFile.txt") as file: #C:/Users/akash/Documents/GitHub/Mini-Project-group-8/Job/textFile.txt
+        user_data = file.readlines()                                                            #E:/College/MiniProject/Mini-Project-group-8/Job/textFile.txt
     user_data = [ i.replace('\n', '') for i in user_data ]
     age, sleep_time, wake_time, awaken_hrs, caffeine, alcohol, smoking, exercise =  [0, 1, 2, 3, 4, 5, 6, 7]
     user_data[age], user_data[sleep_time], user_data[wake_time] = int(user_data[age]), float(user_data[sleep_time]), float(user_data[wake_time])
@@ -125,8 +125,8 @@ def predictor():
         'Exercise_frequency' : [user_data[6]]
     }
     userDataDF = pandas.DataFrame(userData)
-    model_2 = joblib.load("C:/Users/akash/Documents/GitHub/Mini-Project-group-8/Job/SleepAnalysis.pkl")
-    predict = model_2.predict(userDataDF.to_numpy())
+    model_2 = joblib.load("E:/College/MiniProject/Mini-Project-group-8/Job/SleepAnalysis.pkl") #C:/Users/akash/Documents/GitHub/Mini-Project-group-8/Job/SleepAnalysis.pkl
+    predict = model_2.predict(userDataDF.to_numpy())                                                    #E:/College/MiniProject/Mini-Project-group-8/Job/SleepAnalysis.pkl
     return predict # Sleep Efficiency
 
 
