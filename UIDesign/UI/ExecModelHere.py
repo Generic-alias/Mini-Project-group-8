@@ -1,6 +1,6 @@
 import sys
-sys.path.append("C:/Users/akash/Documents/GitHub/Mini-Project-group-8/Job")
-
+sys.path.append("E:/College/MiniProject/Mini-Project-group-8/Job") #C:/Users/akash/Documents/GitHub/Mini-Project-group-8/Job
+                                                                            #E:/College/MiniProject/Mini-Project-group-8/Job
 from PyQt5 import QtCore, QtGui, QtWidgets
 from ModelCheck import predictor
 
@@ -42,7 +42,7 @@ class Ui_Dialog(object):
             text_edit = QtWidgets.QTextEdit(Dialog)
             text_edit.setGeometry(QtCore.QRect(20, y_pos + 25, 200, 30))
             text_edit.setStyleSheet("background: #333; color: white; border-radius: 5px; font-size: 14px;")
-            
+            text_edit.textChanged.connect(self.save_text)
             self.text_boxes.append(text_edit)
             y_pos += 60
         
@@ -50,6 +50,15 @@ class Ui_Dialog(object):
         self.textEdit_output.setGeometry(QtCore.QRect(650, 20, 200, 40))
         self.textEdit_output.setStyleSheet("background: #444; color: white; border-radius: 5px; font-size: 16px;")
         self.textEdit_output.setReadOnly(True)
+        
+        # self.textEdit.textChanged.connect(self.save_text)
+        # self.textEdit_2.textChanged.connect(self.save_text)
+        # self.textEdit_3.textChanged.connect(self.save_text)
+        # self.textEdit_4.textChanged.connect(self.save_text)
+        # self.textEdit_5.textChanged.connect(self.save_text)
+        # self.textEdit_6.textChanged.connect(self.save_text)
+        # self.textEdit_7.textChanged.connect(self.save_text)
+        # self.textEdit_8.textChanged.connect(self.save_text)
         
         self.pushButton = QtWidgets.QPushButton(Dialog)
         self.pushButton.setGeometry(QtCore.QRect(650, 550, 100, 40))
@@ -65,17 +74,20 @@ class Ui_Dialog(object):
         
         QtCore.QMetaObject.connectSlotsByName(Dialog)
     def save_text(self):
-        text = self.textEdit.toPlainText()
-        text_2 = self.textEdit_2.toPlainText()
-        text_3 = self.textEdit_3.toPlainText()
-        text_4 = self.textEdit_4.toPlainText()
-        text_5 = self.textEdit_5.toPlainText()
-        text_6 = self.textEdit_6.toPlainText()
-        text_7 = self.textEdit_7.toPlainText()
-        text_8 = self.textEdit_8.toPlainText()
-        text_total = [text_8,'\n', text,'\n', text_2,'\n', text_3,'\n', text_4,'\n', text_5,'\n', text_6,'\n', text_7]
-        with open('C:/Users/akash/Documents/GitHub/Mini-Project-group-8/Job/textFile.txt', 'w') as file:
-            file.writelines(text_total)
+        # text = self.textEdit.toPlainText()
+        # text_2 = self.textEdit_2.toPlainText()
+        # text_3 = self.textEdit_3.toPlainText()
+        # text_4 = self.textEdit_4.toPlainText()
+        # text_5 = self.textEdit_5.toPlainText()
+        # text_6 = self.textEdit_6.toPlainText()
+        # text_7 = self.textEdit_7.toPlainText()
+        # text_8 = self.textEdit_8.toPlainText()
+        text_total = []
+        for i in self.text_boxes:
+            text_total.append(i.toPlainText())
+            text_total.append('\n')
+        with open('E:/College/MiniProject/Mini-Project-group-8/Job/textFile.txt', 'w') as file:                     #C:/Users/akash/Documents/GitHub/Mini-Project-group-8/Job/textFile.txt
+            file.writelines(text_total)                                                                                      #E:/College/MiniProject/Mini-Project-group-8/Job/textFile.txt
 
     def showPred(self):
         prediction = predictor()
