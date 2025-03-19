@@ -1,6 +1,7 @@
 import React,{ useState,useEffect } from 'react'
 // import axios from 'axios'
 // import SleepTrack from './Components/SleepTracker/Sleeper'
+import './App.css'
 import CustomRoutes from './Routes/CustomRoutes'
 import Home from './Components/Home/Home'
 function App() {
@@ -15,14 +16,13 @@ function App() {
   //   setData(response.data.users)
   // }
   return (
-    <>
+    <div className='App'>
       {/* <h1>{ data.map((t) => <div>{t}</div>) }</h1> */}
       
-      <Home />
 
         
       <CustomRoutes/>
-    </>
+    </ div>
   )
 }
 

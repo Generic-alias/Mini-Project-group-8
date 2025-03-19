@@ -1,19 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './Home.css'
 function Home(){
     return(
-        <>
-        <h1>Welcome To Smart Vitality Tracker with AI</h1>
-        <h3>Select what you would prefer to do:</h3>
+        <div>
+        <div className="NavBar">
         <Link to = "/">
-          <p>Home Page</p>
-         
+          Home Page 
           </Link>
         <Link to="/SleepTrack">
-            <p> Sleep Tracking</p>
+             Sleep Tracking
           </Link>
-
-        </>
+        <Link to = "/DietTrack">
+        Diet Tracking
+        </Link>
+        </div>
+        <h1>Welcome To Smart Vitality Tracker with AI</h1>
+        </ div>
     );
 }
 
