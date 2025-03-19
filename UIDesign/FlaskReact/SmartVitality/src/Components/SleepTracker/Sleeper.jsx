@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios'
 function SleepTrack(){
     const [data, setData] = useState({"age": "", 
         "bedTime": "",
@@ -15,9 +16,13 @@ function SleepTrack(){
         const {name, value} = e.target;
         setData({...data, [name]: value})
     }
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault();
-        console.log("Submitted Data: ", data)
+        const response = await axios.post("http://localhost:5000/submit", data, {
+            headers : {
+            "Content-Type" : "application/json"
+        }})
+        console.log("Server Response: ", response.data)
     }
     return(
         <>
