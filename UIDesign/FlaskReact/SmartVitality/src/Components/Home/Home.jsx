@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './Home.css';
 function Home(){
     return(
         <>
@@ -13,6 +14,10 @@ function Home(){
             <p> Sleep Tracking</p>
           </Link>
 
+          <Link to = "/">
+          <p>Diet Tracking</p>
+         
+          </Link>
         </>
     );
 }
