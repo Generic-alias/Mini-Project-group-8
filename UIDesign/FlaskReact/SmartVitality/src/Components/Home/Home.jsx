@@ -5,7 +5,7 @@ import './Home.css'
 
 function Home(){
     return(
-        <div>
+        <div className="contain">
         <div className="NavBar">
         <Link to = "/">
           Home Page 
@@ -18,6 +18,7 @@ function Home(){
         Diet Tracking
         </Link>
         </div>
+
         <h1>Welcome To Smart Vitality Tracker with AI</h1>
         </ div>
 
