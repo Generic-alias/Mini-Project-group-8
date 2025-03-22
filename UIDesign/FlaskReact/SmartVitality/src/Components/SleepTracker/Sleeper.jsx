@@ -1,12 +1,9 @@
 import React from "react";
-<<<<<<< HEAD
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
-=======
 import './SleepTrack.css';
 
->>>>>>> f5c5b3530557eaf11675af8964dc820a76cdaf23
 function SleepTrack(){
     const [sleepEfficiency, setSleepEfficiency] = useState(null);
     const [data, setData] = useState({"age": "", 
