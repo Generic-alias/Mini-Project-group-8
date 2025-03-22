@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-.NavBar{
-    font-size: large;
-    display: flex;
-    justify-content: space-evenly;
-    width: 500px;
-=======
+
 /* Global Styles */
 * {
     margin: 0;
@@ -72,5 +66,5 @@ a p {
         padding: 12px 25px;
         font-size: 1rem;
     }
->>>>>>> f5c5b3530557eaf11675af8964dc820a76cdaf23
+
 }
