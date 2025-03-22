@@ -3,13 +3,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 function SleepTrack(){
+    const [sleepEfficiency, setSleepEfficiency] = useState(null);
     const [data, setData] = useState({"age": "", 
         "bedTime": "",
         "wakeTime": "",
         "awakenings" : "",
         "caffeine": "",
         "alcohol": "",
-        "smoking": "",
+        "smoking": "No",
         "exercise": ""
     })
     const handleChange = (e) =>{
@@ -23,6 +24,7 @@ function SleepTrack(){
             "Content-Type" : "application/json"
         }})
         console.log("Server Response: ", response.data)
+        setSleepEfficiency(response.data.sleep_efficiency);
     }
     return(
         <>
@@ -57,7 +59,7 @@ function SleepTrack(){
                 <input type="number" name="alcohol" value={data.alcohol} onChange={handleChange} />
 
                 <p>Enter Smoking Status:</p>
-                <select name="smoking" value={data.smoking} onChange={handleChange}>
+                <select name="smoking" value={data.smoking || "No"} onChange={handleChange}>
                     <option value="No">No</option>
                     <option value="Yes">Yes</option>
                 </select>
@@ -68,6 +70,11 @@ function SleepTrack(){
                 <br /><br />
                 <button type="submit">Submit</button>
             </form>
+            {sleepEfficiency !== null && (
+                <div>
+                    <h3>Predicted Sleep Efficiency: {sleepEfficiency.toFixed(3) * 100}%</h3>
+                </div>
+            )}
         </>
     );
 }
