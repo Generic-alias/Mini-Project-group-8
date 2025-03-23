@@ -1,4 +1,4 @@
-CREATE TABLE `mytable` (
+CREATE TABLE `dietdb` (
   `Unnamed: 0` BIGINT,
   `name` VARCHAR(1024),
   `serving_size` BIGINT,
@@ -78,7 +78,7 @@ CREATE TABLE `mytable` (
   `water` DOUBLE
 );
 
-INSERT INTO `mytable` (`Unnamed: 0`,`name`,`serving_size`,`calories`,`total_fat`,`saturated_fat`,`cholesterol`,`sodium`,`choline`,`folate`,`folic_acid`,`niacin`,`pantothenic_acid`,`riboflavin`,`thiamin`,`vitamin_a`,`vitamin_a_rae`,`carotene_alpha`,`carotene_beta`,`cryptoxanthin_beta`,`lutein_zeaxanthin`,`lucopene`,`vitamin_b12`,`vitamin_b6`,`vitamin_c`,`vitamin_d`,`vitamin_e`,`tocopherol_alpha`,`vitamin_k`,`calcium`,`copper`,`irom`,`magnesium`,`manganese`,`phosphorous`,`potassium`,`selenium`,`zink`,`protein`,`alanine`,`arginine`,`aspartic_acid`,`cystine`,`glutamic_acid`,`glycine`,`histidine`,`hydroxyproline`,`isoleucine`,`leucine`,`lysine`,`methionine`,`phenylalanine`,`proline`,`serine`,`threonine`,`tryptophan`,`tyrosine`,`valine`,`carbohydrate`,`fiber`,`sugars`,`fructose`,`galactose`,`glucose`,`lactose`,`maltose`,`sucrose`,`fat`,`saturated_fatty_acids`,`monounsaturated_fatty_acids`,`polyunsaturated_fatty_acids`,`fatty_acids_total_trans`,`alcohol`,`ash`,`caffeine`,`theobromine`,`water`)
+INSERT INTO `dietdb` (`Unnamed: 0`,`name`,`serving_size`,`calories`,`total_fat`,`saturated_fat`,`cholesterol`,`sodium`,`choline`,`folate`,`folic_acid`,`niacin`,`pantothenic_acid`,`riboflavin`,`thiamin`,`vitamin_a`,`vitamin_a_rae`,`carotene_alpha`,`carotene_beta`,`cryptoxanthin_beta`,`lutein_zeaxanthin`,`lucopene`,`vitamin_b12`,`vitamin_b6`,`vitamin_c`,`vitamin_d`,`vitamin_e`,`tocopherol_alpha`,`vitamin_k`,`calcium`,`copper`,`irom`,`magnesium`,`manganese`,`phosphorous`,`potassium`,`selenium`,`zink`,`protein`,`alanine`,`arginine`,`aspartic_acid`,`cystine`,`glutamic_acid`,`glycine`,`histidine`,`hydroxyproline`,`isoleucine`,`leucine`,`lysine`,`methionine`,`phenylalanine`,`proline`,`serine`,`threonine`,`tryptophan`,`tyrosine`,`valine`,`carbohydrate`,`fiber`,`sugars`,`fructose`,`galactose`,`glucose`,`lactose`,`maltose`,`sucrose`,`fat`,`saturated_fatty_acids`,`monounsaturated_fatty_acids`,`polyunsaturated_fatty_acids`,`fatty_acids_total_trans`,`alcohol`,`ash`,`caffeine`,`theobromine`,`water`)
 VALUES
 (0,'Cornstarch',100,381,0.1,NULL,0,9,0.4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0.05,0.47,3,0.053,13,3,2.8,0.06,0.26,0.019,0.012,0.02,0.006,0.053,0.009,0.008,0,0.01,0.036,0.006,0.006,0.013,0.024,0.012,0.009,0.001,0.01,0.014,91.27,0.9,0,0,0,0,0,0,0,0.05,0.009,0.016,0.025,0,0,0.09,0,0,8.32),
 (1,'Nuts, pecans',100,691,72,6.2,0,0,40.5,22,0,1.167,0.863,0.13,0.66,56,3,0,29,9,17,0,0,0.21,1.1,0,1.4,1.4,3.5,70,1.2,2.53,121,4.5,277,410,3.8,4.53,9.17,0.397,1.177,0.929,0.152,1.829,0.453,0.262,0,0.336,0.598,0.287,0.183,0.426,0.363,0.474,0.306,0.093,0.215,0.411,13.86,9.6,3.97,0.04,0,0.04,0,0,3.9,71.97,6.18,40.801,21.614,0,0,1.49,0,0,3.52),
