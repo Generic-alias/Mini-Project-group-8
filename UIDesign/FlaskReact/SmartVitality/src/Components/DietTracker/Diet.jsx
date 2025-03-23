@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import './Diet.css'
+import "./Diet.css";
 
 function Diet() {
   const [dropdown, setDropdown] = useState([]);
   const [data, setData] = useState({ food: "", serving: "" });
   const [food, setFood] = useState("");
-  const [out, setOut] = useState([]); // Initialize as an empty array
+  const [out, setOut] = useState({}); // Changed to an object
 
   const fetchOutput = async () => {
     try {
@@ -16,8 +16,13 @@ function Diet() {
       });
       console.log("Server response:", response.data);
 
-      // Assuming response.data is an array from the backend
-      setOut(response.data);
+      // Ensure response is an object
+      if (typeof response.data === "object" && response.data !== null) {
+        setOut(response.data);
+      } else {
+        console.error("Unexpected response format:", response.data);
+        setOut({}); // Reset if invalid response
+      }
     } catch (error) {
       console.error("Error fetching output:", error);
     }
@@ -78,7 +83,7 @@ function Diet() {
           onChange={handleInputChange} 
         />
 
-        {dropdown.length > 0 && (
+{dropdown.length > 0 ? (
           <ul className="dropdown">
             {dropdown.map((value, index) => (
               <li 
@@ -90,6 +95,8 @@ function Diet() {
               </li>
             ))}
           </ul>
+        ) : (
+          <div className="listing"></div>
         )}
 
         <p>Enter your servings (in g)</p>
@@ -101,18 +108,23 @@ function Diet() {
         />
 
         <button type="submit" onClick={fetchOutput}>Submit</button>
-      </form>
-
-      {out.length > 0 && (
+              {/* Render output only if `out` is not empty */}
+      {Object.keys(out).length > 0 && (
         <div>
-          <p>Output:</p>
+          <p>Output</p>
           <ul>
-            {out.map((ele, idx) => (
-              <li key={idx}>{ele}</li>
+            {Object.entries(out).map(([key, value], idx) => (
+              <li key={idx}>
+                <strong>{key}:</strong> {JSON.stringify(value)}
+              </li>
             ))}
           </ul>
         </div>
+
       )}
+      </form>
+
+
     </>
   );
 }

@@ -1,5 +1,33 @@
-.dropdown li{
+li{
     color: black;
     padding: 5px;
     list-style: none;
+}
+input[type="number"],
+input[type="text"]{
+    width: 100%;
+    padding: 2px;
+    padding-left: 5px;
+    margin: 10px;
+    margin-left: 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    padding-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus{
+    border-color: #3498db;
+}
+.listing{
+    /* height: 250px; */
+    padding: 6px;
+    /* padding: 50px; */
+}
+
+.dropdown{
+transition: all ease 0.7s;
 }
