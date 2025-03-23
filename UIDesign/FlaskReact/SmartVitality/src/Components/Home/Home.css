@@ -1,0 +1,76 @@
+<<<<<<< HEAD
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    background: linear-gradient(135deg, #6e7fdb, #5572b5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: white;
+    letter-spacing: 2px;
+}
+
+h3 {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    color: white;
+}
+
+/* Link Styling */
+a {
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 30px;
+    background-color: #ff6f61;
+    color: white;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+a:hover {
+    background-color: #ff4c3b;
+    transform: scale(1.05);
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+a p {
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+    a {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+=======
+.NavBar{
+    font-size: large;
+    display: flex;
+    justify-content: space-evenly;
+    width: 500px;
+>>>>>>> d62e97b6fb397d91c0e10446c21137f22e6fbaa2
+}
