@@ -15,8 +15,9 @@ body {
     background: rgb(1, 82, 82);
     color: white;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    /* box-sizing: border-box; */
     height: 100vh;
     text-align: center;
 }
@@ -74,7 +75,8 @@ a p {
 .NavBar{
     font-size: large;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
     width: 500px;
 
 }
