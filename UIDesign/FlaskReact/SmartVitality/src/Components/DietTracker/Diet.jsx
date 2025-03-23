@@ -16,6 +16,9 @@ function Diet(){
             Diet Tracking
             </Link>
             </div>
+            <form className="container">
+            <button type="submit">Submit</button>
+            </form>
         </>
     )
 }
