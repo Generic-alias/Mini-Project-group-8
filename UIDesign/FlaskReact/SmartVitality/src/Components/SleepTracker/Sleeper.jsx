@@ -84,7 +84,7 @@ function SleepTrack(){
             </form>
             {sleepEfficiency !== null && (
                 <div>
-                    <h3>Predicted Sleep Efficiency: {sleepEfficiency.toFixed(4) * 100}%</h3>
+                    <h3>Predicted Sleep Efficiency: {(sleepEfficiency*100).toFixed(2)}%</h3>
                 </div>
             )}
             </div>
