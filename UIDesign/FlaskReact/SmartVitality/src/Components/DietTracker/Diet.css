@@ -17,9 +17,10 @@
     color: black;
     padding: 5px;
     list-style: none;
+
 }
 .dietContainer input{
-    width: 90%;
+    width: 100%;
     padding: 2px;
     padding-left: 5px;
     margin: 10px;
@@ -30,6 +31,8 @@
     outline: none;
     padding-bottom: 10px;
     transition: all 0.3s ease;
+    text-align: center;
+    letter-spacing: 1px;
 }
 
 .dietContainer input:focus{
@@ -95,22 +98,14 @@ content: none;
 }
 
 .Output{
-    border: 1px solid #2980b9;
+    border: 1px solid #ccc;
     border-radius: 10px;
-    border-width: 5px;
-    max-height: 20px;
+    max-height: 3vh;
     overflow: hidden;
     transition: all 0.5s ease;
     
 }
 
-.Output::before{
-    content: "Results";
-    color: black;
-    transition: all 0.5s ease;
-}
-
-.Output:hover, .Output:hover:before{
+.Output:hover{
     max-height: 20vh;
-    content: none;
 }
