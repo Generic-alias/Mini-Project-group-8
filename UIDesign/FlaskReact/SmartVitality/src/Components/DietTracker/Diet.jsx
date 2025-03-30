@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Diet.css";
+import NavBar from '../NavBar/NavBar'
 
 function Diet() {
   const [dropdown, setDropdown] = useState([]);
@@ -68,13 +69,9 @@ function Diet() {
 
   return (
     <>
-      <div className="NavBar">
-        <Link to="/">Home Page</Link>
-        <Link to="/SleepTrack">Sleep Tracking</Link>
-        <Link to="/DietTrack">Diet Tracking</Link>
-      </div>
+      <NavBar/>
 
-      <form className="container" onSubmit={handleSubmit}>
+      <form className="dietContainer" onSubmit={handleSubmit}>
         <p>Enter what you ate:</p>
         <input 
           type="text" 

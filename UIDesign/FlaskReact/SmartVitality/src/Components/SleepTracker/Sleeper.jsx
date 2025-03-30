@@ -1,9 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from 'axios'
 import './SleepTrack.css';
-
+import NavBar from '../NavBar/NavBar'
 function SleepTrack(){
     const [sleepEfficiency, setSleepEfficiency] = useState(null);
     const [data, setData] = useState({"age": "", 
@@ -32,18 +31,7 @@ function SleepTrack(){
     }
     return(
         <>
-        <div className="NavBar">
-        <Link to = "/">
-          Home Page 
-          </Link>
-        <Link to="/SleepTrack">
-             Sleep Tracking
-          </Link>
-        <Link to = "/DietTrack">
-        Diet Tracking
-        </Link>
-        </div>
-        <br /><br />
+         <NavBar/>
         <div  className="container">
        <form onSubmit={handleSubmit}>
                 <p>Enter your age:</p>

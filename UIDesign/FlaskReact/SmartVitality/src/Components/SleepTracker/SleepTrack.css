@@ -4,41 +4,45 @@
     padding: 30px 40px;
     border-radius: 10px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-
+    margin-top: 20px;
 }
 
 /* Header Text */
 .container p, .container h3 {
-    font-size: 16px;
+    font-size: 18px;
     color: #333;
     font-weight: bold;
 }
 
 /* Form Fields */
-input[type="number"],
-input[type="time"],
+
+.container input,
 select {
-    width: 100%;
+    width: 90%;
     padding: 2px;
     padding-left: 5px;
     margin: 10px;
     margin-left: 0;
     border-radius: 5px;
     border: 1px solid #ccc;
-    font-size: 16px;
-    outline: none;
-    padding-bottom: 10px;
-    transition: all 0.3s ease;
+    font-size: 18px;
+    padding-bottom: 6px;
+    text-align: center;
 }
 
-input[type="number"]:focus,
+.container input[type="time"]{
+    text-align: center;
+    letter-spacing: 4px;
+}
+
+.container input[type="number"]:focus,
 input[type="time"]:focus,
 select:focus {
     border-color: #3498db;
 }
 
 /* Submit Button */
-button {
+.container button {
     background-color: #3498db;
     color: white;
     padding: 12px;
@@ -50,7 +54,7 @@ button {
     transition: all 0.3s ease;
 }
 
-button:hover {
+.container button:hover {
     background-color: #2980b9;
 }
 
@@ -59,7 +63,7 @@ button:hover {
     .container {
         padding: 20px;
     }
-    button {
+    .container button {
         padding: 10px;
     }
 }

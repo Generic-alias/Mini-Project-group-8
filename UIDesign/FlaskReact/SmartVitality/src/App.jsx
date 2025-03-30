@@ -19,7 +19,7 @@ function App() {
     <div className='App'>
       {/* <h1>{ data.map((t) => <div>{t}</div>) }</h1> */}
       
-
+    
         
       <CustomRoutes/>
     </ div>
