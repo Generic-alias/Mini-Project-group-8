@@ -70,6 +70,7 @@ function SleepTrack(){
                 <br /><br />
                 <button type="submit">Submit</button>
             </form>
+            <br />
             {sleepEfficiency !== null && (
                 <div>
                     <h3>Predicted Sleep Efficiency: {(sleepEfficiency*100).toFixed(2)}%</h3>

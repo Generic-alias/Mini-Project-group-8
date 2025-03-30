@@ -21,3 +21,8 @@
 .NavBar_a p, .NavBar_b p, .NavBar_c p {
     margin: 0;
 }
+
+.NavBar{
+    position : sticky;
+    top: 5px;
+}

@@ -19,6 +19,7 @@ body {
     /* box-sizing: border-box; */
     height: 100vh;
     text-align: center;
+    overflow: scroll;
 }
 
 h1 {

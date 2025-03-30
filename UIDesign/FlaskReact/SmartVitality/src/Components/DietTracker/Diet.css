@@ -32,8 +32,7 @@
     transition: all 0.3s ease;
 }
 
-.dietContainer input[type="number"]:focus,
-input[type="text"]:focus{
+.dietContainer input:focus{
     border-color: #3498db;
 }
 .listing{
@@ -42,15 +41,34 @@ input[type="text"]:focus{
     /* padding: 50px; */
 }
 
-.dropdown{
-transition: all ease 0.7s;
+.dropdown, .listing{
+    border: 1px solid #777;
+    border-radius: 10px;
+    outline: none;
+}
+
+/* .dropdown{
+    opacity: 0;
+    transition: opacity ease 0.7s;
+}
+.dropdown:hover{
+opacity: 1;
+    transition: opacity ease 0.7s;
+    
+} */
+
+.listItem:hover{
+    transform: scale(1.08);
+    background-color: #000;
+    color: white;
+    transition: all 0.5s ease;
 }
 
 .dietContainer button {
     background-color: #3498db;
     color: white;
     padding: 12px;
-    width: 100%;
+    width: 90%;
     border-radius: 5px;
     border: none;
     font-size: 16px;

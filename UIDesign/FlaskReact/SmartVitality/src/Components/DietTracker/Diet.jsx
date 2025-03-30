@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Diet.css";
 import NavBar from '../NavBar/NavBar'
@@ -79,22 +78,24 @@ function Diet() {
           value={food} 
           onChange={handleInputChange} 
         />
-
+<div className="dropper">
 {dropdown.length > 0 ? (
           <ul className="dropdown">
             {dropdown.map((value, index) => (
               <li 
                 key={index} 
                 onClick={() => handleFoodSelection(value)}
-                style={{ cursor: "pointer", padding: "5px", borderBottom: "1px solid #ccc" }}
+                style={{ cursor: "pointer", borderRadius: "10px", marginBottom: "10px" }} className="listItem"
               >
                 {value}
               </li>
             ))}
           </ul>
         ) : (
-          <div className="listing"></div>
+          <div className="listing"><p>Search Results will appear here</p></div>
         )}
+<br /><br />
+</div>
 
         <p>Enter your servings (in g)</p>
         <input 
