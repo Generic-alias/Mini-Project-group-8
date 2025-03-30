@@ -83,9 +83,9 @@ function Diet() {
           <ul className="dropdown">
             {dropdown.map((value, index) => (
               <li 
-                key={index} 
+                key={index}  className="listItem"
                 onClick={() => handleFoodSelection(value)}
-                style={{ cursor: "pointer", borderRadius: "10px", marginBottom: "10px" }} className="listItem"
+                style={{ cursor: "pointer", borderRadius: "10px", marginBottom: "10px" }}
               >
                 {value}
               </li>
