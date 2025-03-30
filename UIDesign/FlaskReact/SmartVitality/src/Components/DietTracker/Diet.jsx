@@ -10,7 +10,6 @@ function Diet() {
   const [out, setOut] = useState({}); // Changed to an object
 
   const fetchOutput = async () => {
-    try {
       const response = await axios.post("http://localhost:5000/diet/output", data, {
         headers: { "Content-Type": "application/json" },
       });
@@ -23,9 +22,6 @@ function Diet() {
         console.error("Unexpected response format:", response.data);
         setOut({}); // Reset if invalid response
       }
-    } catch (error) {
-      console.error("Error fetching output:", error);
-    }
   };
 
   const fetchFoodSuggestions = async (query) => {
@@ -33,16 +29,10 @@ function Diet() {
       setDropdown([]);
       return;
     }
-
-    try {
       const response = await axios.post("http://localhost:5000/diet", { food: query }, {
         headers: { "Content-Type": "application/json" },
       });
       setDropdown(response.data.results);
-      console.log("Server response:", response.data);
-    } catch (error) {
-      console.error("Error fetching food data:", error);
-    }
   };
 
   const handleInputChange = (e) => {
@@ -61,9 +51,12 @@ function Diet() {
     setDropdown([]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("Submitted data:", data);
+    const response = await axios.post("http://localhost:5000/diet/output/store", data, {
+      headers: { "Content-Type": "application/json" },
+    });
+    console.log("Submitted data: ", response.data);
   };
 
   return (

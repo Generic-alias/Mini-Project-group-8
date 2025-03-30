@@ -93,9 +93,12 @@ def output():
         "total_fat": int(result[4] * serving),
         "sugars": int(result[5] * serving)
     }
-    print(type(output))
-    print(output)
     return jsonify(output)
+
+@app.route('/diet/output/store', methods = ['GET', 'POST'])
+def store():
+    data = request.get_json()
+    return jsonify(data)
 
 if __name__ == "__main__":
     app.run()
