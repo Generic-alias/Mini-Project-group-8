@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 # calories, protien, sugar, fat, fiber, carbohydrates
 
-model = joblib.load("MiniProject/Mini-Project-group-8/UIDesign/FlaskReact/FlaskAPI/SleepAnalysis2.pkl")
+model = joblib.load("E:/College/MiniProject/Mini-Project-group-8/UIDesign/FlaskReact/FlaskAPI/SleepAnalysis2.pkl")
 # /home/kali/College/Mini/Job/SleepAnalysis.pkl
 # SleepAnalysis2.pkl
 db = pymysql.connect(
@@ -74,7 +74,7 @@ exercise]])
 def diet():
     data = request.get_json()
     food_query = f"{data['food']}%"
-    cursor.execute("select name from dietdb where name like %s limit 10", (food_query,))
+    cursor.execute("select name from dietdb where name like %s limit 30", (food_query,))
     results = cursor.fetchall()
     results = [i[0] for i in results]
     return jsonify({'results' : results})

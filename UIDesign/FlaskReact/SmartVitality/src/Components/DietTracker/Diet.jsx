@@ -78,14 +78,14 @@ function Diet() {
           value={food} 
           onChange={handleInputChange} 
         />
-<div className="dropper">
+
 {dropdown.length > 0 ? (
           <ul className="dropdown">
             {dropdown.map((value, index) => (
               <li 
                 key={index}  className="listItem"
                 onClick={() => handleFoodSelection(value)}
-                style={{ cursor: "pointer", borderRadius: "10px", marginBottom: "10px" }}
+                style={{ cursor: "pointer" }}
               >
                 {value}
               </li>
@@ -94,9 +94,8 @@ function Diet() {
         ) : (
           <div className="listing"><p>Search Results will appear here</p></div>
         )}
-<br /><br />
-</div>
-
+        <br />
+        <div>
         <p>Enter your servings (in g)</p>
         <input 
           type="number" 
@@ -105,10 +104,12 @@ function Diet() {
           onChange={handleInputChange} 
         />
 
+        </div>
+
         <button type="submit" onClick={fetchOutput}>Submit</button>
-              {/* Render output only if `out` is not empty */}
+        <br /><br />
       {Object.keys(out).length > 0 && (
-        <div>
+        <div className="Output">
           <p>Output</p>
           <ul>
             {Object.entries(out).map(([key, value], idx) => (
