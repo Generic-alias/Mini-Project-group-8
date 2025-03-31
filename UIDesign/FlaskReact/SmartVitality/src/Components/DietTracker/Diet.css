@@ -75,11 +75,6 @@ padding: 4px;
     border-radius: 10px;
     outline: none;
 }
-.foodList{
-    background-color: white;
-    color: black;
-}
-
 
 .dropdown{
     height: 3vh;
@@ -87,7 +82,6 @@ padding: 4px;
     transition: all 0.5s ease;
     border-radius: 10px;
     width: 60vh;
-    left: 68vh;
     background-color: white;
 }
 
