@@ -19,7 +19,7 @@
     list-style: none;
 
 }
-.dietContainer input{
+.servings{
     width: 100%;
     padding: 2px;
     padding-left: 5px;
@@ -35,7 +35,33 @@
     letter-spacing: 1px;
 }
 
-.dietContainer input:focus{
+.list_button{
+margin-left: 4px;
+border-radius: 5px;
+border: 1px solid #ccc;
+cursor: pointer;
+transition: all 0.5s ease;
+background-color: #49b5fd;
+color: white;
+padding: 4px;
+}
+
+.list_button:hover{
+    background-color: #347cac;
+
+}
+
+.input_dish{
+    width: 70%;
+    transition: all 0.3s ease;
+    padding: 6px;
+    font-size: 16px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.servings:focus{
     border-color: #3498db;
 }
 .listing{
@@ -51,28 +77,22 @@
 }
 
 
+
 .dropdown{
-    max-height: 50px;
+    height: 3vh;
     overflow: scroll;
     transition: all 0.5s ease;
-    /* border: 1px solid #2980b9; */
     border-radius: 10px;
-    /* border-width: 5px; */
+    width: 60vh;
+    left: 68vh;
+    background-color: white;
 }
 
-.dropdown::before{
-    content: "...(hover for more)";
-    color: black;
-}
-
-.dropdown:hover, .dropdown:hover:before{
-max-height: 30vh;
-content: none;
-}
-
-.listItem{
-    margin: 10px;
-    color : white;
+.dropdown.open {
+    height: 30vh;
+    z-index: 1;
+    position:absolute;
+    transition: all 0.5s ease;
 }
 
 .listItem:hover{
@@ -81,7 +101,7 @@ content: none;
     transition: scale 0.5s ease;
 }
 
-.dietContainer button {
+.submission {
     background-color: #3498db;
     color: white;
     padding: 12px;
@@ -93,19 +113,19 @@ content: none;
     transition: all 0.3s ease;
 }
 
-.dietContainer button:hover {
+.submission:hover {
     background-color: #2980b9;
 }
 
 .Output{
     border: 1px solid #ccc;
     border-radius: 10px;
-    max-height: 3vh;
+    max-height: 30vh;
     overflow: hidden;
     transition: all 0.5s ease;
-    
-}
-
-.Output:hover{
-    max-height: 20vh;
+    position: absolute;
+    z-index: 0;
+    background-color: white;
+    width: 60vh;
+    left: 68vh;
 }

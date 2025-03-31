@@ -1,38 +1,61 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Diet.css";
-import NavBar from '../NavBar/NavBar'
+import NavBar from "../NavBar/NavBar";
 
 function Diet() {
   const [dropdown, setDropdown] = useState([]);
   const [data, setData] = useState({ food: "", serving: "" });
   const [food, setFood] = useState("");
-  const [out, setOut] = useState({}); // Changed to an object
+  const [out, setOut] = useState({});
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    if (dropdown.length > 0) {
+      setIsDropdownOpen((prev) => !prev);
+    }
+  };
 
   const fetchOutput = async () => {
-      const response = await axios.post("http://localhost:5000/diet/output", data, {
-        headers: { "Content-Type": "application/json" },
-      });
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/diet/output",
+        data,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       console.log("Server response:", response.data);
-
-      // Ensure response is an object
-      if (typeof response.data === "object" && response.data !== null) {
-        setOut(response.data);
-      } else {
-        console.error("Unexpected response format:", response.data);
-        setOut({}); // Reset if invalid response
-      }
+      setOut(response.data || {});
+    } catch (error) {
+      console.error("Error fetching output:", error);
+      setOut({});
+    }
   };
 
   const fetchFoodSuggestions = async (query) => {
-    if (!query) {
+    if (!query.trim()) {
       setDropdown([]);
+      setIsDropdownOpen(false);
       return;
     }
-      const response = await axios.post("http://localhost:5000/diet", { food: query }, {
-        headers: { "Content-Type": "application/json" },
-      });
-      setDropdown(response.data.results);
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/diet",
+        { food: query },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      if (response.data.results.length > 0) {
+        setDropdown(response.data.results);
+      } else {
+        setDropdown([]);
+      }
+    } catch (error) {
+      console.error("Error fetching food data:", error);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -41,7 +64,14 @@ function Diet() {
 
     if (name === "food") {
       setFood(value);
-      fetchFoodSuggestions(value);
+      setOut({}); // 🔥 Clear Output when input changes
+
+      if (value.trim() === "") {
+        setDropdown([]);
+        setIsDropdownOpen(false);
+      } else {
+        fetchFoodSuggestions(value);
+      }
     }
   };
 
@@ -49,34 +79,48 @@ function Diet() {
     setFood(selectedFood);
     setData({ ...data, food: selectedFood });
     setDropdown([]);
+    setIsDropdownOpen(false);
+    setOut({}); // 🔥 Clear Output when a new food is selected
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post("http://localhost:5000/diet/output/store", data, {
-      headers: { "Content-Type": "application/json" },
-    });
-    console.log("Submitted data: ", response.data);
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/diet/output/store",
+        data,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      console.log("Submitted data:", response.data);
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
   };
 
   return (
     <>
-      <NavBar/>
-
+      <NavBar />
       <form className="dietContainer" onSubmit={handleSubmit}>
         <p>Enter what you ate:</p>
-        <input 
-          type="text" 
-          name="food" 
-          value={food} 
-          onChange={handleInputChange} 
+        <input
+          className="input_dish"
+          type="text"
+          name="food"
+          value={food}
+          onChange={handleInputChange}
         />
+        <button type="button" className="list_button" onClick={toggleDropdown}>
+          List the dishes
+        </button>
 
-{dropdown.length > 0 ? (
-          <ul className="dropdown">
+        {isDropdownOpen && dropdown.length > 0 && (
+          <ul className="dropdown open">
             {dropdown.map((value, index) => (
-              <li 
-                key={index}  className="listItem"
+              <li
+                key={index}
+                className="listItem"
                 onClick={() => handleFoodSelection(value)}
                 style={{ cursor: "pointer" }}
               >
@@ -84,39 +128,34 @@ function Diet() {
               </li>
             ))}
           </ul>
-        ) : (
-          <div className="listing"><p>Search Results will appear here</p></div>
         )}
-        <br />
-        <div>
+
         <p>Enter your servings (in g)</p>
-        <input 
-          type="number" 
-          name="serving" 
-          value={data.serving} 
-          onChange={handleInputChange} 
+        <input
+          className="servings"
+          type="number"
+          name="serving"
+          value={data.serving}
+          onChange={handleInputChange}
         />
 
-        </div>
+        <button type="submit" onClick={fetchOutput} className="submission">
+          Submit
+        </button>
 
-        <button type="submit" onClick={fetchOutput}>Submit</button>
-        <br /><br />
-      {Object.keys(out).length > 0 && (
-        <div className="Output">
-          <p>Output</p>
-          <ul>
-            {Object.entries(out).map(([key, value], idx) => (
-              <li key={idx}>
-                <strong>{key}:</strong> {JSON.stringify(value)}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-      )}
+        {Object.keys(out).length > 0 && (
+          <div className="Output">
+            <p>Output</p>
+            <ul>
+              {Object.entries(out).map(([key, value], idx) => (
+                <li key={idx}>
+                  <strong>{key}:</strong> {JSON.stringify(value)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </form>
-
-
     </>
   );
 }
