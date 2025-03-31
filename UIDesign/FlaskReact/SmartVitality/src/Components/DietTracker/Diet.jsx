@@ -64,7 +64,7 @@ function Diet() {
 
     if (name === "food") {
       setFood(value);
-      setOut({}); // 🔥 Clear Output when input changes
+      setOut({});
 
       if (value.trim() === "") {
         setDropdown([]);
@@ -80,7 +80,7 @@ function Diet() {
     setData({ ...data, food: selectedFood });
     setDropdown([]);
     setIsDropdownOpen(false);
-    setOut({}); // 🔥 Clear Output when a new food is selected
+    setOut({}); 
   };
 
   const handleSubmit = async (e) => {
