@@ -1,5 +1,5 @@
 create database mini;
-
+use mini;
 CREATE TABLE `dietdb` (
   `Unnamed: 0` BIGINT,
   `name` VARCHAR(1024),

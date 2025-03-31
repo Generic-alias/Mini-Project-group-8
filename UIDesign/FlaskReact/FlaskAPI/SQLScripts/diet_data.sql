@@ -1,5 +1,5 @@
 create database mini;
-
+use mini;
 CREATE TABLE `diet_data` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(1024) DEFAULT NULL,
