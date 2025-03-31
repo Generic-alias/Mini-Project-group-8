@@ -8,14 +8,26 @@ function Diet() {
   const [data, setData] = useState({ food: "", serving: "" });
   const [food, setFood] = useState("");
   const [out, setOut] = useState({});
+  const [serving, setServing] = useState("")
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const [foodList, setFoodList] = useState([])
   const toggleDropdown = () => {
     if (dropdown.length > 0) {
       setIsDropdownOpen((prev) => !prev);
     }
   };
+  const addFoodItem = () => {
+    try{
+        setFoodList([...foodList, { food, serving: serving }]);
+        setFood("");
+        setServing("");
+        setOut({});
+    }
+    catch (e){
+      console.log("Error")
+    }
 
+  };
   const fetchOutput = async () => {
     try {
       const response = await axios.post(
@@ -61,7 +73,6 @@ function Diet() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
-
     if (name === "food") {
       setFood(value);
       setOut({});
@@ -98,6 +109,8 @@ function Diet() {
       console.error("Error submitting data:", error);
     }
   };
+
+  // console.log(data)
 
   return (
     <>
@@ -138,7 +151,20 @@ function Diet() {
           value={data.serving}
           onChange={handleInputChange}
         />
-
+<br />
+<button type = "button" onClick={addFoodItem}>Add Item</button>
+<br />
+<div>
+<ul className="foodList">
+          {foodList.map((item, index) => (
+            <li key={index}>
+              {item.food} - {item.serving}g
+            </li>
+          ))}
+</ul>
+</div>
+<br />
+<br />
         <button type="submit" onClick={fetchOutput} className="submission">
           Submit
         </button>
