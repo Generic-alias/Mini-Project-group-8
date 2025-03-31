@@ -109,7 +109,6 @@ def store():
     data = request.get_json()
     for i in data:
         cursor.execute('insert into diet_data (name, serving_in_g, calories, protein, carbohydrate, cholesterol, total_fat) select name, %s, calories * %s, protein * %s, carbohydrate * %s, cholesterol * %s, total_fat * %s from dietdb where name = %s', (i['serving'],i['serving'],i['serving'],i['serving'],i['serving'],i['serving'],i['food']))
-        # cursor.execute('update diet_data insert into diet_data serving values %s where name = %s', (i['serving'], i['food']))
         db.commit()
     return jsonify(data)
 

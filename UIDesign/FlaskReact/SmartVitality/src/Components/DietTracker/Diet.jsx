@@ -20,6 +20,7 @@ function Diet() {
 
   const addFoodItem = () => {
     if (food.trim() && serving.trim()) {
+      document.querySelector(".submission").style.display = "inline-block";
       setFoodList([...foodList, { food, serving }]);
       setFood("");
       setServing("");
@@ -28,6 +29,8 @@ function Diet() {
 
   const fetchOutput = async () => {
     try {
+      setFoodList([]);
+      document.querySelector(".submission").style.display = "none";
       const response = await axios.post(
         "http://localhost:5000/diet/output",
         foodList,
@@ -102,7 +105,7 @@ function Diet() {
   return (
     <>
       <NavBar />
-      <form className="dietContainer" onSubmit={handleSubmit}>
+      <form className="dietContainer" onSubmit={handleSubmit} autoComplete="off">
         <p>Enter what you ate:</p>
         <input
           className="input_dish"
@@ -139,9 +142,9 @@ function Diet() {
           onChange={handleInputChange}
         />
         <br />
-        <button type="button" onClick={addFoodItem}>Add Item</button>
+        <button type="button" onClick={addFoodItem} className="add">Add Item</button>
         <br />
-        <div>
+        
           <ul className="foodList">
             {foodList.map((item, index) => (
               <li key={index}>
@@ -149,7 +152,7 @@ function Diet() {
               </li>
             ))}
           </ul>
-        </div>
+        
         <br />
         <button type="submit" onClick={fetchOutput} className="submission">
           Submit
