@@ -7,27 +7,25 @@ function Diet() {
   const [dropdown, setDropdown] = useState([]);
   const [data, setData] = useState({ food: "", serving: "" });
   const [food, setFood] = useState("");
+  const [serving, setServing] = useState("");
+  const [foodList, setFoodList] = useState([]);
   const [out, setOut] = useState({});
-  const [serving, setServing] = useState("")
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [foodList, setFoodList] = useState([])
+
   const toggleDropdown = () => {
     if (dropdown.length > 0) {
       setIsDropdownOpen((prev) => !prev);
     }
   };
-  const addFoodItem = () => {
-    try{
-        setFoodList([...foodList, { food, serving: serving }]);
-        setFood("");
-        setServing("");
-        setOut({});
-    }
-    catch (e){
-      console.log("Error")
-    }
 
+  const addFoodItem = () => {
+    if (food.trim() && serving.trim()) {
+      setFoodList([...foodList, { food, serving }]);
+      setFood("");
+      setServing("");
+    }
   };
+
   const fetchOutput = async () => {
     try {
       const response = await axios.post(
@@ -37,7 +35,6 @@ function Diet() {
           headers: { "Content-Type": "application/json" },
         }
       );
-      console.log("Server response:", response.data);
       setOut(response.data || {});
     } catch (error) {
       console.error("Error fetching output:", error);
@@ -59,12 +56,7 @@ function Diet() {
           headers: { "Content-Type": "application/json" },
         }
       );
-
-      if (response.data.results.length > 0) {
-        setDropdown(response.data.results);
-      } else {
-        setDropdown([]);
-      }
+      setDropdown(response.data.results.length > 0 ? response.data.results : []);
     } catch (error) {
       console.error("Error fetching food data:", error);
     }
@@ -76,13 +68,14 @@ function Diet() {
     if (name === "food") {
       setFood(value);
       setOut({});
-
       if (value.trim() === "") {
         setDropdown([]);
         setIsDropdownOpen(false);
       } else {
         fetchFoodSuggestions(value);
       }
+    } else if (name === "serving") {
+      setServing(value);
     }
   };
 
@@ -91,26 +84,19 @@ function Diet() {
     setData({ ...data, food: selectedFood });
     setDropdown([]);
     setIsDropdownOpen(false);
-    setOut({}); 
+    setOut({});
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:5000/diet/output/store",
-        data,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      console.log("Submitted data:", response.data);
+      await axios.post("http://localhost:5000/diet/output/store", data, {
+        headers: { "Content-Type": "application/json" },
+      });
     } catch (error) {
       console.error("Error submitting data:", error);
     }
   };
-
-  // console.log(data)
 
   return (
     <>
@@ -148,23 +134,22 @@ function Diet() {
           className="servings"
           type="number"
           name="serving"
-          value={data.serving}
+          value={serving}
           onChange={handleInputChange}
         />
-<br />
-<button type = "button" onClick={addFoodItem}>Add Item</button>
-<br />
-<div>
-<ul className="foodList">
-          {foodList.map((item, index) => (
-            <li key={index}>
-              {item.food} - {item.serving}g
-            </li>
-          ))}
-</ul>
-</div>
-<br />
-<br />
+        <br />
+        <button type="button" onClick={addFoodItem}>Add Item</button>
+        <br />
+        <div>
+          <ul className="foodList">
+            {foodList.map((item, index) => (
+              <li key={index}>
+                {item.food} - {item.serving}g
+              </li>
+            ))}
+          </ul>
+        </div>
+        <br />
         <button type="submit" onClick={fetchOutput} className="submission">
           Submit
         </button>
