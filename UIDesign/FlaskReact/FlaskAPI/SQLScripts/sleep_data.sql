@@ -1,3 +1,5 @@
+create database mini;
+
 CREATE TABLE `sleep_data` (
   `id` int NOT NULL AUTO_INCREMENT,
   `age` int DEFAULT NULL,
