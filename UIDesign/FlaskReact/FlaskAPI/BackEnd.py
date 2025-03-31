@@ -98,7 +98,10 @@ def output():
 @app.route('/diet/output/store', methods = ['GET', 'POST'])
 def store():
     data = request.get_json()
-    return jsonify(data)
+    data['serving'] = int(data['serving']) / 100
+    cursor.execute('insert into diet_data (name, calories, protein, carbohydrate, cholesterol, total_fat) select name, calories, protein, carbohydrate, cholesterol, total_fat from dietdb where name = %s', (data['food'],))
+    db.commit()
+    return jsonify("Done")
 
 if __name__ == "__main__":
     app.run()
