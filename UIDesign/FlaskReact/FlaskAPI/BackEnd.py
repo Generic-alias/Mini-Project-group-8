@@ -81,27 +81,37 @@ def diet():
 
 @app.route("/diet/output", methods = ['GET', 'POST'])
 def output():
-    data = request.get_json()
-    serving = int(data['serving']) / 100
-    cursor.execute("select calories, protein, carbohydrate, cholesterol, total_fat, sugars from dietdb where name = %s", (data['food'],))
-    result = cursor.fetchone()
-    output = {
-        "calories": int(result[0] * serving),
-        "protein": int(result[1] * serving),
-        "carbohydrate": int(result[2] * serving),
-        "cholesterol": int(result[3] * serving),
-        "total_fat": int(result[4] * serving),
-        "sugars": int(result[5] * serving)
+    data, foods, output, final = request.get_json(), [], [], []
+    for i in data:
+        foods.append(i['food'])
+    foods = tuple(foods)
+    cursor.execute("select calories, protein, carbohydrate, cholesterol, total_fat, sugars from dietdb where name in %s", (foods,))
+    results = cursor.fetchall()
+    for i in results:
+        output.append(np.array(i))
+    for i in output:
+        for j in data:
+            final.append(i * (int(j['serving']) / 100))
+    final = np.sum(final, axis = 0)
+    print(final)
+    diet = {
+        "calories": final[0],
+        "protein": final[1],
+        "carbohydrate": final[2],
+        "cholesterol": final[3],
+        "total_fat": final[4],
+        "sugars": final[5]
     }
-    return jsonify(output)
+    return jsonify(diet)
 
 @app.route('/diet/output/store', methods = ['GET', 'POST'])
 def store():
     data = request.get_json()
-    data['serving'] = int(data['serving']) / 100
-    cursor.execute('insert into diet_data (name, calories, protein, carbohydrate, cholesterol, total_fat) select name, calories, protein, carbohydrate, cholesterol, total_fat from dietdb where name = %s', (data['food'],))
-    db.commit()
-    return jsonify("Done")
+    for i in data:
+        cursor.execute('insert into diet_data (name, serving_in_g, calories, protein, carbohydrate, cholesterol, total_fat) select name, %s, calories * %s, protein * %s, carbohydrate * %s, cholesterol * %s, total_fat * %s from dietdb where name = %s', (i['serving'],i['serving'],i['serving'],i['serving'],i['serving'],i['serving'],i['food']))
+        # cursor.execute('update diet_data insert into diet_data serving values %s where name = %s', (i['serving'], i['food']))
+        db.commit()
+    return jsonify(data)
 
 if __name__ == "__main__":
     app.run()

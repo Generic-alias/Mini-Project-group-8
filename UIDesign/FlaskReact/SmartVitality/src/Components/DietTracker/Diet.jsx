@@ -30,7 +30,7 @@ function Diet() {
     try {
       const response = await axios.post(
         "http://localhost:5000/diet/output",
-        data,
+        foodList,
         {
           headers: { "Content-Type": "application/json" },
         }
@@ -90,9 +90,10 @@ function Diet() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/diet/output/store", data, {
+      const response = await axios.post("http://localhost:5000/diet/output/store", foodList, {
         headers: { "Content-Type": "application/json" },
       });
+      console.log(response.data)
     } catch (error) {
       console.error("Error submitting data:", error);
     }
