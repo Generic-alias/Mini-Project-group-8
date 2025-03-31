@@ -1,0 +1,4 @@
+First create database mini if not already.
+Then, in mysql CLI:
+
+source path/to/sql/file
