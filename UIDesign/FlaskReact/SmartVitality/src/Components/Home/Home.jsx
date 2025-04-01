@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './Home.css'
-import NavBar from '../NavBar/NavBar'
 function Home(){
     return(
       <div>
-      <NavBar/>
+      <Link to="/SleepTrack" className="NavBar NavBar_b">
+                   Sleep Tracking
+                </Link>
+              <Link to = "/DietTrack" className="NavBar NavBar_c">
+              Diet Tracking
+      </Link>
 
         <h1>Welcome To Smart Vitality Tracker with AI</h1>
         </ div>

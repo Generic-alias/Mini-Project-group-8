@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 # calories, protien, sugar, fat, fiber, carbohydrates
 
-model = joblib.load("E:/College/MiniProject/Mini-Project-group-8/UIDesign/FlaskReact/FlaskAPI/SleepAnalysis2.pkl")
+model = joblib.load("C:/Users/akash/Documents/GitHub/minor/Mini-Project-group-8/UIDesign/FlaskReact/FlaskAPI/SleepAnalysis.pkl")
 # /home/kali/College/Mini/Job/SleepAnalysis.pkl
 # SleepAnalysis2.pkl
 db = pymysql.connect(

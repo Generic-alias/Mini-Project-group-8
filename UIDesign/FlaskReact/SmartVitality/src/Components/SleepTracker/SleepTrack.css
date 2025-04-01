@@ -59,11 +59,10 @@ select {
 }
 
 /* Responsive Design */
-@media screen and (max-width: 480px) {
-    .container {
-        padding: 20px;
+
+/* Responsive Design */
+/* @media screen and (max-width: 900px) {
+    .form{
+        background-color: black !important;
     }
-    .container button {
-        padding: 10px;
-    }
-}
+} */

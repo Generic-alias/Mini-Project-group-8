@@ -33,7 +33,7 @@ function SleepTrack(){
         <>
          <NavBar/>
         <div  className="container">
-       <form onSubmit={handleSubmit}>
+       <form onSubmit={handleSubmit} className="form">
                 <p>Enter your age:</p>
                 <input type="number" name="age" value={data.age} onChange={handleChange} min={10} />
 
