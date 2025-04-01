@@ -57,12 +57,3 @@ select {
 .container button:hover {
     background-color: #2980b9;
 }
-
-/* Responsive Design */
-
-/* Responsive Design */
-/* @media screen and (max-width: 900px) {
-    .form{
-        background-color: black !important;
-    }
-} */
