@@ -22,7 +22,11 @@
     margin: 0;
 }
 
-.NavBar{
-    position : sticky;
-    top: 5px;
+
+
+@media screen and (max-height: 880px){ 
+    .root{
+        padding-top: 12%;
+    }
+    
 }

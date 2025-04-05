@@ -20,7 +20,7 @@
 
 }
 .servings{
-    width: 100%;
+    width: 70%;
     padding: 2px;
     padding-left: 5px;
     margin: 10px;
@@ -45,6 +45,7 @@ background-color: #49b5fd;
 color: white;
 padding: 4px;
 font-size: 16px;
+display: none;
 }
 
 .list_button:hover{
@@ -116,12 +117,13 @@ font-size: 16px;
     background-color: #2980b9;
 }
 
-.Output{
+.Output ul > li{
     border: 1px solid #ccc;
-    border-radius: 10px;
     max-height: 30vh;
     overflow: hidden;
     transition: all 0.3s ease;
+    background: rgb(1, 82, 82);
+    color: white;
     /* position: absolute; */
     /* z-index: 0; */
     /* background-color: white; */
@@ -145,7 +147,8 @@ font-size: 16px;
 }
 
 .add{
-    background-color: #43aff7;
+    /* background-color: #43aff7; */
+    background: rgb(1, 82, 82);
     color: white;
     padding: 4px;
     border-radius: 5px;
@@ -154,4 +157,6 @@ font-size: 16px;
     font-size: 16px;
     transition: all 0.3s ease;
     cursor: pointer;
+    padding: 10px ;
+    letter-spacing: 2px;
 }

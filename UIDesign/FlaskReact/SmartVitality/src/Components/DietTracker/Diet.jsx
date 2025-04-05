@@ -12,6 +12,11 @@ function Diet() {
   const [out, setOut] = useState({});
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  // const dropper = async() =>{
+  //   if(dropdown.length > 0){
+  //     await setIsDropdownOpen(True)
+  //   }
+  // }
   const toggleDropdown = () => {
     if (dropdown.length > 0) {
       setIsDropdownOpen((prev) => !prev);
@@ -24,6 +29,7 @@ function Diet() {
       setFoodList([...foodList, { food, serving }]);
       setFood("");
       setServing("");
+      document.querySelector(".list_button").style.display = "none";
     }
   };
 
@@ -60,6 +66,8 @@ function Diet() {
         }
       );
       setDropdown(response.data.results.length > 0 ? response.data.results : []);
+      document.querySelector(".list_button").style.display = "inline-block";
+      
     } catch (error) {
       console.error("Error fetching food data:", error);
     }
@@ -72,6 +80,7 @@ function Diet() {
       setFood(value);
       setOut({});
       if (value.trim() === "") {
+        document.querySelector(".list_button").style.display = "none";
         setDropdown([]);
         setIsDropdownOpen(false);
       } else {
@@ -141,7 +150,6 @@ function Diet() {
           value={serving}
           onChange={handleInputChange}
         />
-        <br />
         <button type="button" onClick={addFoodItem} className="add">Add Item</button>
         <br />
         
