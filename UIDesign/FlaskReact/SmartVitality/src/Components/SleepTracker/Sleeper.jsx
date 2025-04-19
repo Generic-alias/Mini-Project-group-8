@@ -35,7 +35,7 @@ function SleepTrack(){
         <div  className="container">
        <form onSubmit={handleSubmit} className="form">
                 <p>Enter your age:</p>
-                <input type="number" name="age" value={data.age} onChange={handleChange} min={10} />
+                <input type="number" name="age" value={data.age} onChange={handleChange}  />
 
                 <p>Enter your Bed Time:</p>
                 <input type="time" name="bedTime" value={data.bedTime} onChange={handleChange} />
@@ -73,7 +73,7 @@ function SleepTrack(){
             <br />
             {sleepEfficiency !== null && (
                 <div>
-                    <h3>Predicted Sleep Efficiency: {(sleepEfficiency*100).toFixed(2)}%</h3>
+                    <h3>Predicted Sleep Efficiency: {(sleepEfficiency.toFixed(4)*100)}%</h3>
                 </div>
             )}
             </div>
