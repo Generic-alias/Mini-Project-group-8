@@ -1,3 +1,5 @@
 .App{
-    padding-left: 5%;
+    /* padding-left: 5%; */
+    width: 750px;
+    overflow: scroll;
 }

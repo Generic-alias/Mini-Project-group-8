@@ -1,16 +1,22 @@
 .root{
-    width: 750px;
-}
-
-@media screen and (max-width: 900px) {
-    html{
-        transform: scale(0.95);
-    }
+    width: auto;
+    margin: 1px;
+    padding: 1px;
+    overflow: scroll;
 }
 
 
-@media screen and (max-width: 768){ 
+
+@media screen and (max-width: 900px) and (min-width: 769px){
     html{
         transform: scale(0.9);
     }
+}
+
+
+@media screen and (max-width: 768px) and (min-width: 420px){ 
+    html{
+        transform: scale(0.8);
+    }
+
 }
