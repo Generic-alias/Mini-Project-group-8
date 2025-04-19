@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import axios from 'axios'
+import axios from 'axios';
+import Plot from 'react-plotly.js';
 import './SleepTrack.css';
 import NavBar from '../NavBar/NavBar'
 function SleepTrack(){
     const [sleepEfficiency, setSleepEfficiency] = useState(null);
+    const [plot, setPlot] = useState(null);
     const [data, setData] = useState({"age": "", 
         "bedTime": "",
         "wakeTime": "",
@@ -28,9 +30,11 @@ function SleepTrack(){
         }})
         console.log("Server Response: ", response.data)
         setSleepEfficiency(response.data.sleep_efficiency);
+        setPlot(response.data.graph);
     }
+    console.log(plot)
     return(
-        <>
+        <div className={`Sleep${plot ? 'with_plot' : ''}`}>
          <NavBar/>
         <div  className="container">
        <form onSubmit={handleSubmit} className="form">
@@ -76,8 +80,12 @@ function SleepTrack(){
                     <h3>Predicted Sleep Efficiency: {(sleepEfficiency*100).toFixed(2)}%</h3>
                 </div>
             )}
+            {plot !== null && (
+                <div className="plot"><Plot data = {plot.data} layout = {{...plot.layout, autosize: true, height: 400, margin: {t: 30, l: 40, r: 20, b: 40}}} useResizeHandler = {true} style = {{width: '100%'}} /> 
+                </div>
+                )}
             </div>
-        </>
+        </div>
     );
 }
 

@@ -4,15 +4,18 @@ import pymysql  # or import mysql.connector
 import joblib
 import pandas as pd
 import numpy as np
+import plotly, json
+import plotly.express as px
 # calories, protien, sugar, fat, fiber, carbohydrates
 
-model = joblib.load("/home/kali/Coding/MiniProject/Job/SleepAnalysis.pkl")
+model = joblib.load("E:/College/MiniProject/Mini-Project-group-8/UIDesign/FlaskReact/FlaskAPI/SleepAnalysis2.pkl")
 # /home/kali/Coding/MiniProject/Job/SleepAnalysis.pkl
 # C:/Users/akash/Documents/GitHub/minor/Mini-Project-group-8/UIDesign/FlaskReact/FlaskAPI/SleepAnalysis.pkl
 # SleepAnalysis2.pkl
+# E:/College/MiniProject/Mini-Project-group-8/UIDesign/FlaskReact/FlaskAPI
 db = pymysql.connect(
 host = "localhost",
-user = "aditya", #root #aditya
+user = "root", #root #aditya
 password = "root",
 database = "mini"
 )
@@ -68,8 +71,21 @@ exercise]])
     values = (age, bed_time, wake_time, awakenings, caffeine, alcohol, smoking, exercise, sleep_efficiency, REM, deep_sleep)
     cursor.execute(insert_query, values)
     db.commit()
-    print(data)
-    return jsonify({'sleep_efficiency': prediction[0], "duration": sleep_duration, "data" : data, "values": values })
+    cursor.execute("select id, sleep_efficiency from (select id, sleep_efficiency from sleep_data order by id desc limit 7) as recent_data order by id")
+    results = cursor.fetchall()
+    sleepData, idList = [], []
+    for i in results:
+        sleepData.append(i[1])
+        idList.append(i[0])
+    barDF = pd.DataFrame(
+        {
+            "id": idList,
+            "sleep_data": [i * 100 for i in sleepData]
+        }
+    )
+    fig = px.bar(barDF, x = "id", y = "sleep_data")
+    graph = plotly.io.to_json(fig, pretty = True)
+    return jsonify({'sleep_efficiency': prediction[0], "graph": json.loads(graph) })
 
 @app.route("/diet", methods = ['GET', 'POST'])
 def diet():
@@ -103,12 +119,27 @@ def output():
         "total_fat": final[4],
         "sugars": final[5]
     }
-    return jsonify(diet)
+    cursor.execute("select id,calories from (select id, calories from diet_data order by id desc limit 5) as recent_data order by id")
+    results = cursor.fetchall()
+    id_array, cal_array = [], []
+    for i in results:
+        id_array.append(i[0])
+        cal_array.append(i[1])
+    diet_barDF = pd.DataFrame({
+        "id" : id_array,
+        "calories" : cal_array
+    })
+    print(diet_barDF)
+    fig = px.bar(diet_barDF, x = "id")
+    graph = plotly.io.to_json(fig, pretty = True)
+    return jsonify({"diet": diet, "graph": json.loads(graph)})
 
 @app.route('/diet/output/store', methods = ['GET', 'POST'])
 def store():
     data = request.get_json()
+    print(data)
     for i in data:
+        i['serving'] = str(int(i['serving']) / 100)
         cursor.execute('insert into diet_data (name, serving_in_g, calories, protein, carbohydrate, cholesterol, total_fat) select name, %s, calories * %s, protein * %s, carbohydrate * %s, cholesterol * %s, total_fat * %s from dietdb where name = %s', (i['serving'],i['serving'],i['serving'],i['serving'],i['serving'],i['serving'],i['food']))
         db.commit()
     return jsonify(data)

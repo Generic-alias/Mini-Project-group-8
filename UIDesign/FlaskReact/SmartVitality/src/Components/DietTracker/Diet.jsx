@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Plot from "react-plotly.js";
 import "./Diet.css";
 import NavBar from "../NavBar/NavBar";
 
@@ -11,17 +12,17 @@ function Diet() {
   const [foodList, setFoodList] = useState([]);
   const [out, setOut] = useState({});
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const [plot, setPlot] = useState(null)
   // const dropper = async() =>{
   //   if(dropdown.length > 0){
   //     await setIsDropdownOpen(True)
   //   }
   // }
-  const toggleDropdown = () => {
-    if (dropdown.length > 0) {
-      setIsDropdownOpen((prev) => !prev);
-    }
-  };
+  // const toggleDropdown = () => {
+  //   if (dropdown.length > 0) {
+  //     setIsDropdownOpen((prev) => !prev);
+  //   }
+  // };
 
   const addFoodItem = () => {
     if (food.trim() && serving.trim()) {
@@ -29,13 +30,11 @@ function Diet() {
       setFoodList([...foodList, { food, serving }]);
       setFood("");
       setServing("");
-      document.querySelector(".list_button").style.display = "none";
     }
   };
 
   const fetchOutput = async () => {
     try {
-      setFoodList([]);
       document.querySelector(".submission").style.display = "none";
       const response = await axios.post(
         "http://localhost:5000/diet/output",
@@ -44,13 +43,16 @@ function Diet() {
           headers: { "Content-Type": "application/json" },
         }
       );
-      setOut(response.data || {});
+      setOut(response.data.diet || {});
+      setPlot(response.data.graph)
+      setFoodList([]);
     } catch (error) {
       console.error("Error fetching output:", error);
       setOut({});
     }
   };
-
+// console.log(plot)
+// console.log(out)
   const fetchFoodSuggestions = async (query) => {
     if (!query.trim()) {
       setDropdown([]);
@@ -66,8 +68,7 @@ function Diet() {
         }
       );
       setDropdown(response.data.results.length > 0 ? response.data.results : []);
-      document.querySelector(".list_button").style.display = "inline-block";
-      
+      setIsDropdownOpen(true);
     } catch (error) {
       console.error("Error fetching food data:", error);
     }
@@ -80,7 +81,6 @@ function Diet() {
       setFood(value);
       setOut({});
       if (value.trim() === "") {
-        document.querySelector(".list_button").style.display = "none";
         setDropdown([]);
         setIsDropdownOpen(false);
       } else {
@@ -123,10 +123,6 @@ function Diet() {
           value={food}
           onChange={handleInputChange}
         />
-        <button type="button" className="list_button" onClick={toggleDropdown}>
-          List the dishes
-        </button>
-
         {isDropdownOpen && dropdown.length > 0 && (
           <ul className="dropdown open">
             {dropdown.map((value, index) => (
@@ -179,6 +175,15 @@ function Diet() {
           </div>
         )}
       </form>
+        {
+          plot !== null && (
+            <div>
+              <Plot data = {plot.data} layout = {plot.layout}>
+
+              </Plot>
+            </div>
+          )
+        }
     </>
   );
 }

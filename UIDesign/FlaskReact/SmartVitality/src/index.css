@@ -2,10 +2,16 @@
     width: auto;
     margin: 1px;
     padding: 1px;
-    overflow: scroll;
+    /* margin-top: auto; */
 }
 
-
+body{
+    overflow: scroll;
+}
+/* body{
+    margin-top: auto;
+}
+ */
 
 @media screen and (max-width: 900px) and (min-width: 769px){
     html{

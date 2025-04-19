@@ -5,9 +5,19 @@
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    /* padding-top: 50%; */
+    overflow-y:auto;
 }
 
+.Sleep{
+    height: 100%;
+    overflow-y: auto ;
+    /* margin-top: 60%; */
+}
+
+.Sleepwith_plot{
+    margin-top: 60%;
+}
 /* Header Text */
 .container p, .container h3 {
     font-size: 18px;
@@ -56,4 +66,11 @@ select {
 
 .container button:hover {
     background-color: #2980b9;
+}
+
+.plot {
+    width: 100%;
+    /* max-width: 700px; */
+    /* margin-top: 20px; */
+    overflow-x: auto;
 }
