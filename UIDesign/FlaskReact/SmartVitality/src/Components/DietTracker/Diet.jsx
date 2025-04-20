@@ -43,8 +43,7 @@ function Diet() {
           headers: { "Content-Type": "application/json" },
         }
       );
-      setOut(response.data.diet || {});
-      setPlot(response.data.graph)
+      setOut(response.data|| {});
       setFoodList([]);
     } catch (error) {
       console.error("Error fetching output:", error);
@@ -106,6 +105,7 @@ function Diet() {
         headers: { "Content-Type": "application/json" },
       });
       console.log(response.data)
+      setPlot(response.data)
     } catch (error) {
       console.error("Error submitting data:", error);
     }
@@ -174,8 +174,7 @@ function Diet() {
             </ul>
           </div>
         )}
-      </form>
-        {
+                {
           plot !== null && (
             <div>
               <Plot data = {plot.data} layout = {plot.layout}>
@@ -184,6 +183,7 @@ function Diet() {
             </div>
           )
         }
+      </form>
     </>
   );
 }

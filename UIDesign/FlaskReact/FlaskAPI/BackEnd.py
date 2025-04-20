@@ -119,7 +119,30 @@ def output():
         "total_fat": final[4],
         "sugars": final[5]
     }
-    cursor.execute("select id,calories from (select id, calories from diet_data order by id desc limit 5) as recent_data order by id")
+    # cursor.execute("select id,calories from (select id, calories from diet_data order by id desc limit 7) as recent_data order by id")
+    # results = cursor.fetchall()
+    # id_array, cal_array = [], []
+    # for i in results:
+    #     id_array.append(i[0])
+    #     cal_array.append(i[1])
+    # diet_barDF = pd.DataFrame({
+    #     "id" : id_array,
+    #     "calories" : cal_array
+    # })
+    # print(diet_barDF)
+    # fig = px.bar(diet_barDF, x = "id", y = "calories")
+    # graph = plotly.io.to_json(fig, pretty = True)
+    return jsonify(diet)
+
+@app.route('/diet/output/store', methods = ['GET', 'POST'])
+def store():
+    data = request.get_json()
+    print(data)
+    for i in data:
+        i['serving'] = str(int(i['serving']) / 100)
+        cursor.execute('insert into diet_data (name, serving_in_g, calories, protein, carbohydrate, cholesterol, total_fat) select name, %s, calories * %s, protein * %s, carbohydrate * %s, cholesterol * %s, total_fat * %s from dietdb where name = %s', (i['serving'],i['serving'],i['serving'],i['serving'],i['serving'],i['serving'],i['food']))
+        db.commit()
+        cursor.execute("select id,calories from (select id, calories from diet_data order by id desc limit 7) as recent_data order by id")
     results = cursor.fetchall()
     id_array, cal_array = [], []
     for i in results:
@@ -130,19 +153,9 @@ def output():
         "calories" : cal_array
     })
     print(diet_barDF)
-    fig = px.bar(diet_barDF, x = "id")
+    fig = px.bar(diet_barDF, x = "id", y = "calories")
     graph = plotly.io.to_json(fig, pretty = True)
-    return jsonify({"diet": diet, "graph": json.loads(graph)})
-
-@app.route('/diet/output/store', methods = ['GET', 'POST'])
-def store():
-    data = request.get_json()
-    print(data)
-    for i in data:
-        i['serving'] = str(int(i['serving']) / 100)
-        cursor.execute('insert into diet_data (name, serving_in_g, calories, protein, carbohydrate, cholesterol, total_fat) select name, %s, calories * %s, protein * %s, carbohydrate * %s, cholesterol * %s, total_fat * %s from dietdb where name = %s', (i['serving'],i['serving'],i['serving'],i['serving'],i['serving'],i['serving'],i['food']))
-        db.commit()
-    return jsonify(data)
+    return jsonify(json.loads(graph))
 
 if __name__ == "__main__":
     app.run()
