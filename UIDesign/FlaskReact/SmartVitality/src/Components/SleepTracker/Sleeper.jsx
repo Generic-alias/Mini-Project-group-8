@@ -18,18 +18,21 @@ function SleepTrack(){
         "REM" : "",
         "deep_sleep" : ""
     })
+    const [loader, setLoader] = useState(0)
     const handleChange = (e) =>{
         const {name, value} = e.target;
         setData({...data, [name]: value})
     }
     const handleSubmit = async (e) =>{
         e.preventDefault();
+        setLoader(1)
         const response = await axios.post("http://localhost:5000/submit", data, {
             headers : {
             "Content-Type" : "application/json"
         }})
         console.log("Server Response: ", response.data)
         setSleepEfficiency(response.data.sleep_efficiency);
+        setLoader(0)
         setPlot(response.data.graph);
     }
     console.log(plot)
@@ -83,6 +86,16 @@ function SleepTrack(){
             {plot !== null && (
                 <div className="plot"><Plot data = {plot.data} layout = {{...plot.layout, autosize: true, height: 400, margin: {t: 30, l: 40, r: 20, b: 40}}} useResizeHandler = {true} style = {{width: '100%'}} /> 
                 </div>
+                ) ||
+                loader !== 0 && (
+                    <div className="Loading">
+              <span className="Loader a">
+              </span>
+              <span className="Loader b">
+            </span>
+            <span className="Loader c">
+            </span>
+            </div>
                 )}
             </div>
         </div>

@@ -30,32 +30,14 @@
     font-size: 16px;
     outline: none;
     padding-bottom: 10px;
-    transition: all 0.3s ease;
+    transition: all 0.3s linear;
     text-align: center;
     letter-spacing: 1px;
 }
 
-.list_button{
-margin-left: 4px;
-border-radius: 5px;
-border: 1px solid #ccc;
-cursor: pointer;
-transition: all 0.3s ease;
-background-color: #49b5fd;
-color: white;
-padding: 4px;
-font-size: 16px;
-display: none;
-}
-
-.list_button:hover{
-    background-color: #347cac;
-
-}
-
 .input_dish{
-    width: 70%;
-    transition: all 0.3s ease;
+    width: 100%;
+    transition: all 0.3s linear;
     padding: 6px;
     font-size: 16px;
     margin-bottom: 5px;
@@ -81,9 +63,9 @@ display: none;
 .dropdown{
     height: 3vh;
     overflow: scroll;
-    transition: all 0.3s ease;
+    transition: all 0.3s linear;
     border-radius: 10px;
-    width: 60vh;
+    width: 100%;
     background-color: white;
 }
 
@@ -91,13 +73,13 @@ display: none;
     height: 30vh;
     /* z-index: 1;
     position:absolute; */
-    transition: all 0.3s ease;
+    transition: all 0.3s linear;
 }
 
 .listItem:hover{
     scale: 1.2;
     border-width: 0px;
-    transition: scale 0.5s ease;
+    transition: scale 0.8s linear;
 }
 
 .submission {
@@ -109,7 +91,7 @@ display: none;
     border: none;
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s linear;
     display: none;
 }
 
@@ -121,7 +103,7 @@ display: none;
     border: 1px solid #ccc;
     max-height: 30vh;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s linear;
     background: rgb(1, 82, 82);
     color: white;
     /* position: absolute; */
@@ -134,7 +116,7 @@ display: none;
 .foodList{
     background: rgb(1, 82, 82);
     border-radius: 10px;
-    transition: all 0.3s ease;
+    transition: all 0.3s linear;
     width: 80%;
     display: inline-block;
     margin: 1rem;
@@ -155,8 +137,55 @@ display: none;
     outline: none;
     border: 1px solid #ccc;
     font-size: 16px;
-    transition: all 0.3s ease;
+    transition: all 0.3s linear;
     cursor: pointer;
     padding: 10px ;
     letter-spacing: 2px;
+}
+
+.Loading{
+height: 20px;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content:center;
+column-gap: 2px;
+flex-direction: row;
+}
+
+.Loader{
+    width: 10px;
+    height: 20px;
+    background: rgb(1, 82, 82);
+    border-radius: 10px;
+}
+
+.a{
+animation: loadingA 0.8s linear infinite;
+}
+.b{
+animation: loadingB 0.8s linear infinite;
+}
+.c{
+animation: loadingC 0.8s linear infinite;
+}
+
+
+@keyframes loadingA {
+0% {height: 5px;}
+50% {height: 20px;}
+100% {height: 5px;}
+    
+}
+@keyframes loadingB {
+    0% {height: 20px;}
+    50% {height: 5px;}
+    100% {height: 20px;}
+    
+}
+@keyframes loadingC {
+    0% {height: 5px;}
+    50% {height: 20px;}
+    100% {height: 5px;}
+    
 }

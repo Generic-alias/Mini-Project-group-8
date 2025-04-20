@@ -13,6 +13,7 @@ function Diet() {
   const [out, setOut] = useState({});
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [plot, setPlot] = useState(null)
+  const [loader, setLoader] = useState(0)
   // const dropper = async() =>{
   //   if(dropdown.length > 0){
   //     await setIsDropdownOpen(True)
@@ -59,6 +60,7 @@ function Diet() {
       return;
     }
     try {
+      setLoader(1)
       const response = await axios.post(
         "http://localhost:5000/diet",
         { food: query },
@@ -71,6 +73,7 @@ function Diet() {
     } catch (error) {
       console.error("Error fetching food data:", error);
     }
+    setLoader(0)
   };
 
   const handleInputChange = (e) => {
@@ -78,6 +81,8 @@ function Diet() {
     setData({ ...data, [name]: value });
     if (name === "food") {
       setFood(value);
+      setPlot(null)
+      setLoader(0)
       setOut({});
       if (value.trim() === "") {
         setDropdown([]);
@@ -87,6 +92,8 @@ function Diet() {
       }
     } else if (name === "serving") {
       setServing(value);
+      setPlot(null)
+      setLoader(0)
     }
   };
 
@@ -101,6 +108,7 @@ function Diet() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoader(1)
       const response = await axios.post("http://localhost:5000/diet/output/store", foodList, {
         headers: { "Content-Type": "application/json" },
       });
@@ -174,13 +182,25 @@ function Diet() {
             </ul>
           </div>
         )}
-                {
+        {
           plot !== null && (
             <div>
               <Plot data = {plot.data} layout = {plot.layout}>
 
               </Plot>
             </div>
+          ) || 
+          loader !== 0 && // foodList == [] &&
+          (
+            <div className="Loading">
+              <span className="Loader a">
+              </span>
+              <span className="Loader b">
+            </span>
+            <span className="Loader c">
+            </span>
+            </div>
+            
           )
         }
       </form>
