@@ -8,9 +8,9 @@ import plotly, json
 import plotly.express as px
 # calories, protien, sugar, fat, fiber, carbohydrates
 
-model = joblib.load("E:/College/MiniProject/Mini-Project-group-8/UIDesign/FlaskReact/FlaskAPI/sleep_efficiency_pipeline.pkl")
+model = joblib.load("C:/Users/akash/Documents/GitHub/minor/Mini-Project-group-8/UIDesign/FlaskReact/FlaskAPI/sleep_efficiency_pipeline.pkl")
 # /home/kali/Coding/MiniProject/Job/SleepAnalysis.pkl
-# C:/Users/akash/Documents/GitHub/minor/Mini-Project-group-8/UIDesign/FlaskReact/FlaskAPI/SleepAnalysis.pkl
+# C:/Users/akash/Documents/GitHub/minor/Mini-Project-group-8/UIDesign/FlaskReact/FlaskAPI/sleep_efficiency_pipeline.pkl
 # SleepAnalysis2.pkl
 # E:/College/MiniProject/Mini-Project-group-8/UIDesign/FlaskReact/FlaskAPI
 db = pymysql.connect(
@@ -40,26 +40,26 @@ def submit():
     smoking_numeric = 1 if smoking == "Yes" else 0
     sleep_duration = (float(wake_time.split(":")[0]) - float(bed_time.split(":")[0]) + 24) % 24
 
-    userDataDF = np.array([[  age,
- sleep_duration,
-    REM, 
-  deep_sleep, 
-awakenings,
- caffeine,
- alcohol,
- smoking_numeric,  
-exercise]])
-    # userDataDF = pd.DataFrame({
-    #     'Age': [age],
-    #     'Sleep_duration': [sleep_duration],
-    #     'REM_sleep_percentage': [REM], 
-    #     'Deep_sleep_percentage': [deep_sleep], 
-    #     'Awakenings': [awakenings],
-    #     'Caffeine_consumption': [caffeine],
-    #     'Alcohol_consumption': [alcohol],
-    #     'Smoking_status': [smoking_numeric],  
-    #     'Exercise_frequency': [exercise]
-    # })
+#     userDataDF = np.array([[  age,
+#  sleep_duration,
+#     REM, 
+#   deep_sleep, 
+# awakenings,
+#  caffeine,
+#  alcohol,
+#  smoking_numeric,  
+# exercise]])
+    userDataDF = pd.DataFrame({
+        'Age': [age],
+        'Sleep_duration': [sleep_duration],
+        'REM_sleep_percentage': [REM], 
+        'Deep_sleep_percentage': [deep_sleep], 
+        'Awakenings': [awakenings],
+        'Caffeine_consumption': [caffeine],
+        'Alcohol_consumption': [alcohol],
+        'Smoking_status': [smoking_numeric],  
+        'Exercise_frequency': [exercise]
+    })
     prediction = model.predict(userDataDF)
     prediction[0] = np.expm1(prediction[0])
     sleep_efficiency = prediction[0]
@@ -82,7 +82,7 @@ exercise]])
             "sleep_data": [i * 100 for i in sleepData]
         }
     )
-    fig = px.bar(barDF, x = "id", y = "sleep_data")
+    fig = px.bar(barDF, x = "id", y = "sleep_data", labels={"id": "Last 7 Sleep Records", "sleep_data": "Sleep Efficiency Percentage"}, text_auto=True)
     graph = plotly.io.to_json(fig, pretty = True)
     return jsonify({'sleep_efficiency': prediction[0], "graph": json.loads(graph) })
 
