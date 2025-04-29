@@ -1,0 +1,32 @@
+/* Link Styling */
+.NavBar_a, .NavBar_b, .NavBar_c {
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 30px;
+    background-color: #ff6f61;
+    color: white;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    transition: all 0.4s ease;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.NavBar_a:hover, .NavBar_b:hover, .NavBar_c:hover {
+    background-color: #ff4c3b;
+    transform: scale(1.1);
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.NavBar_a p, .NavBar_b p, .NavBar_c p {
+    margin: 0;
+}
+
+
+
+@media screen and (max-height: 880px){ 
+    .root{
+        padding-top: 12%;
+    }
+    
+}

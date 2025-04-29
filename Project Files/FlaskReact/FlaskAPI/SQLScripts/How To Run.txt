@@ -1,0 +1,2 @@
+In mysql CLI:
+source path/to/sql/file

@@ -1,0 +1,121 @@
+/* Container for the form */
+.container {
+    background-color: white;
+    /* padding: 30px 40px; */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    /* padding-top: 50%; */
+    overflow-y:auto;
+}
+
+.Sleep{
+    height: 100%;
+    overflow-y: auto ;
+    /* margin-top: 2%; */
+}
+
+.Sleepwith_plot{
+    margin-top: 60%;
+}
+/* Header Text */
+.container p, .container h3 {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Form Fields */
+
+.container input,
+select {
+    width: 90%;
+    padding: 2px;
+    padding-left: 5px;
+    margin: 10px;
+    margin-left: 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 18px;
+    padding-bottom: 6px;
+    text-align: center;
+    outline: none;
+}
+
+.container input[type="time"]{
+    text-align: center;
+    letter-spacing: 4px;
+}
+
+.container input:focus, select:focus {
+    border-color: #3498db;
+}
+
+/* Submit Button */
+.container button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px;
+    width: 80%;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.container button:hover {
+    background-color: #2980b9;
+}
+
+.plot {
+    width: 100%;
+    /* max-width: 700px; */
+    /* margin-top: 20px; */
+    overflow-x: auto;
+}
+
+
+.Loading{
+    height: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    column-gap: 2px;
+    flex-direction: row;
+}
+    
+.Loader{
+        width: 10px;
+        height: 20px;
+        background: rgb(1, 82, 82);
+        border-radius: 10px;
+}
+    
+.a{
+    animation: loadingA 0.8s linear infinite;
+}
+.b{
+    animation: loadingB 0.8s linear infinite;
+}
+.c{
+    animation: loadingC 0.8s linear infinite;
+}
+    
+    
+@keyframes loadingA {
+    0% {height: 5px;}
+    50% {height: 20px;}
+    100% {height: 5px;}  
+}
+@keyframes loadingB {
+    0% {height: 20px;}
+    50% {height: 5px;}
+    100% {height: 20px;}      
+}
+@keyframes loadingC {
+    0% {height: 5px;}
+    50% {height: 20px;}
+    100% {height: 5px;}        
+}
