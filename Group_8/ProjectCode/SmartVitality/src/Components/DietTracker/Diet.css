@@ -1,0 +1,191 @@
+.dietContainer{
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.dietContainer p, h3 {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+
+.dietContainer li{
+    color: black;
+    padding: 5px;
+    list-style: none;
+
+}
+.servings{
+    width: 70%;
+    padding: 2px;
+    padding-left: 5px;
+    margin: 10px;
+    margin-left: 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    padding-bottom: 10px;
+    transition: all 0.3s linear;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.input_dish{
+    width: 100%;
+    transition: all 0.3s linear;
+    padding: 6px;
+    font-size: 16px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.servings:focus{
+    border-color: #3498db;
+}
+.listing{
+    /* height: 250px; */
+    padding: 6px;
+    /* padding: 50px; */
+}
+
+.dropdown, .listing{
+    border: 1px solid #777;
+    border-radius: 10px;
+    outline: none;
+}
+
+.dropdown{
+    height: 3vh;
+    overflow: scroll;
+    transition: all 0.3s linear;
+    border-radius: 10px;
+    width: 100%;
+    background-color: white;
+}
+
+.dropdown.open {
+    height: 30vh;
+    /* z-index: 1;
+    position:absolute; */
+    transition: all 0.3s linear;
+}
+
+.listItem:hover{
+    scale: 1.2;
+    border-width: 0px;
+    transition: scale 0.8s linear;
+}
+
+.submission {
+    background-color: #3498db;
+    color: white;
+    padding: 12px;
+    width: 90%;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    display: none;
+}
+
+.submission:hover, .add:hover {
+    background-color: #2980b9;
+}
+
+.Output ul > li{
+    border: 1px solid #ccc;
+    max-height: 30vh;
+    overflow: hidden;
+    transition: all 0.3s linear;
+    background: rgb(1, 82, 82);
+    color: white;
+    /* position: absolute; */
+    /* z-index: 0; */
+    /* background-color: white; */
+    /* width: 60vh; */
+    /* left: 68vh; */
+}
+
+.foodList{
+    background: rgb(1, 82, 82);
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    width: 80%;
+    display: inline-block;
+    margin: 1rem;
+}
+
+.foodList > li{
+    color: white;
+    border-bottom: 1px solid white;
+    font-size: 16px;
+}
+
+.add{
+    /* background-color: #43aff7; */
+    background: rgb(1, 82, 82);
+    color: white;
+    padding: 4px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    padding: 10px ;
+    letter-spacing: 2px;
+}
+
+.Loading{
+height: 20px;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content:center;
+column-gap: 2px;
+flex-direction: row;
+}
+
+.Loader{
+    width: 10px;
+    height: 20px;
+    background: rgb(1, 82, 82);
+    border-radius: 10px;
+}
+
+.a{
+animation: loadingA 0.8s linear infinite;
+}
+.b{
+animation: loadingB 0.8s linear infinite;
+}
+.c{
+animation: loadingC 0.8s linear infinite;
+}
+
+
+@keyframes loadingA {
+0% {height: 5px;}
+50% {height: 20px;}
+100% {height: 5px;}
+    
+}
+@keyframes loadingB {
+    0% {height: 20px;}
+    50% {height: 5px;}
+    100% {height: 20px;}
+    
+}
+@keyframes loadingC {
+    0% {height: 5px;}
+    50% {height: 20px;}
+    100% {height: 5px;}
+    
+}
